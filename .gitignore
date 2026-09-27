@@ -4,3 +4,5 @@ dist/
 .env
 backend/.env
 backend/tasks.db
+.vercel
+.env*
