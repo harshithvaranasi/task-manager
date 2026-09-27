@@ -69,6 +69,28 @@ npm run dev
 
 Open the local URL printed by Vite, usually <http://localhost:5173>.
 
+## Deploy to Vercel
+
+The deployed app uses Vercel functions for the REST API and Turso for persistent, hosted SQLite-compatible storage. Local development continues to use the Express API and `backend/tasks.db`.
+
+1. Create a Turso database and generate a database auth token in the Turso dashboard.
+2. In the Vercel dashboard, import `https://github.com/harshithvaranasi/task-manager` and set the project root directory to `frontend`.
+3. Add these environment variables in the Vercel project settings for Production and Preview:
+
+  - `TURSO_DATABASE_URL`: the database URL shown by Turso
+  - `TURSO_AUTH_TOKEN`: the database auth token from Turso
+
+4. Deploy the project. The `tasks` table is created automatically when the API is first used.
+
+To deploy from a terminal instead, run these commands from the `frontend/` directory after signing in with `npx vercel login`:
+
+```bash
+npx vercel
+npx vercel --prod
+```
+
+Set the two Turso environment variables in Vercel before testing the deployed task API. Do not commit database tokens or `.env` files.
+
 ## API endpoints
 
 | Method | Endpoint | Description |

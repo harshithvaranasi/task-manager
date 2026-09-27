@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
-const API_URL = 'http://localhost:5000/api/tasks';
+const API_URL = '/api/tasks';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -21,7 +21,7 @@ function App() {
       setTasks(await response.json());
       setError('');
     } catch {
-      setError('Could not connect to the backend. Make sure the server is running on port 5000.');
+      setError('Could not connect to the task service. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -58,7 +58,7 @@ function App() {
       setTitle('');
       await loadTasks();
     } catch (requestError) {
-      setError(requestError.message || 'Could not connect to the backend.');
+      setError(requestError.message || 'Could not connect to the task service.');
     } finally {
       setIsSaving(false);
     }
@@ -82,7 +82,7 @@ function App() {
 
       await loadTasks();
     } catch (requestError) {
-      setError(requestError.message || 'Could not connect to the backend.');
+      setError(requestError.message || 'Could not connect to the task service.');
     } finally {
       setWorkingTaskId(null);
     }
@@ -101,7 +101,7 @@ function App() {
 
       await loadTasks();
     } catch (requestError) {
-      setError(requestError.message || 'Could not connect to the backend.');
+      setError(requestError.message || 'Could not connect to the task service.');
     } finally {
       setWorkingTaskId(null);
     }
